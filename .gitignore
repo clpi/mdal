@@ -1,0 +1,14 @@
+/target
+**target
+node_modules
+**node_modules
+out/
+.pnpm-debug.log
+**.vscode
+**.ccls-cache
+*.ast 
+*.nrs
+examples/
+**include/
+**client/
+**dist

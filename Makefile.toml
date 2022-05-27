@@ -1,0 +1,43 @@
+[env]
+MDA_HOME="$HOME/mda"
+MDA_CONFIG_FILE="$MDA_HOME/mda.toml"
+MDA_PROFILE_FILE="$MDA_HOME/profile.toml"
+MDA_WORKSPACES_FILE="$MDA_HOME/workspaces.toml"
+
+[tasks.default]
+dependencies = [
+    "clean",
+    "setup",
+    "format",
+    "build",
+    "test",
+    "run"
+]
+
+[tasks.clean]
+command = "cargo"
+args = ["clean"]
+
+[tasks.format]
+install_crate = "rustfmt"
+command = "cargo"
+args = ["fmt", "--", "--emit=files"]
+
+[tasks.test]
+command = "cargo"
+args = ["test"]
+dependencies = ["clean"]
+
+[tasks.build]
+command = "cargo"
+args = [ "build" ]
+
+[tasks.run]
+run_task = [
+    { name = ["cargo", "run"] }
+]
+
+[tasks.setup]
+run_task = [
+    {name = ["mkdir", "-p", "dist/bin"]}
+]
